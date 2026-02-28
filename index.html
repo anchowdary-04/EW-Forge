@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EW-Forge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand fw-bold nav-brand-animate" href="#">EW-Forge</a>
+
+    <ul class="navbar-nav ms-auto gap-4 align-items-center">
+      <li class="nav-item"><a class="nav-link fw-bold nav-hover-link" href="#home">Home</a></li>
+      <li class="nav-item"><a class="nav-link fw-bold nav-hover-link" href="#about">About Us</a></li>
+
+    <select id="serviceSelect" class="form-select service-dropdown" required>
+  <option value="" disabled selected>Services</option>
+  <option value="pickup">Schedule Pick Up</option>
+  <option value="request">Request Functional Parts</option>
+</select>
+
+      <li class="nav-item"><a class="nav-link fw-bold nav-hover-link" href="#contact">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero-section">
+  <!-- Particle canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <div class="hero-overlay">
+    <div class="container text-center text-white hero-text">
+      <h1 class="hero-title" id="heroTitle">EW-Forge</h1>
+      <p class="hero-tagline" id="heroTagline">Where Women Forge Sustainable Change</p>
+      <div class="hero-scroll-hint" id="scrollHint">
+        <span>Scroll Down</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-section reveal-section">
+  <h2 class="about-heading reveal-left">More About Us</h2>
+
+  <div class="container-fluid">
+    <div class="row align-items-start">
+
+      <!-- LEFT IMAGE -->
+      <div class="col-md-4 about-image-col reveal-left" style="--delay:0.2s">
+        <img src="images/img3.jpg" class="about-img img-float" alt="E-waste bin">
+      </div>
+
+      <!-- RIGHT TEXT -->
+      <div class="col-md-6 about-text-col reveal-right" style="--delay:0.4s">
+        <p>
+          EW-Forge is a women-led sustainability initiative reimagining how
+          e-waste is collected and recycled. Founded with the vision of
+          empowering women through green entrepreneurship, we combine
+          innovation, responsibility, and impact to tackle the growing
+          e-waste crisis.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="container text-center">
+    <h2 class="services-title reveal-up">Our Services</h2>
+
+    <div class="row justify-content-center mt-5 g-5">
+
+      <!-- Schedule Pick Up -->
+      <div class="col-md-5 reveal-up" style="--delay:0.1s">
+        <div class="service-rect" onclick="openPickup()">
+          <div class="service-icon-wrap">🚚</div>
+          <h4>Schedule Pick Up</h4>
+          <p>
+            Convenient pickup scheduled<br>
+            right from your home.<br>
+            Choose your time, and we'll<br>
+            handle the rest.
+          </p>
+          <div class="service-ripple"></div>
+        </div>
+      </div>
+
+      <!-- Request Functional Parts -->
+      <div class="col-md-5 reveal-up" style="--delay:0.2s">
+        <div class="service-rect" onclick="openRequest()">
+          <div class="service-icon-wrap">⚙️</div>
+          <h4>Request Functional Parts</h4>
+          <p>
+            Request functional parts<br>
+            easily.<br>
+            We distribute verified,<br>
+            reusable components.
+          </p>
+          <div class="service-ripple"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PICKUP FORM -->
+<div id="pickupForm" class="form-box d-none form-animate">
+  <h4 class="mb-3">Schedule Pick Up</h4>
+
+  <form onsubmit="submitPickup(event)">
+    <input type="text" class="form-control mb-2 form-input-effect" placeholder="Name" required>
+    <input type="email" class="form-control mb-2 form-input-effect" placeholder="Email" required>
+    <input type="tel" class="form-control mb-2 form-input-effect" placeholder="Phone Number" required>
+    <input type="text" class="form-control mb-2 form-input-effect" placeholder="Location" required>
+    <input type="number" class="form-control mb-2 form-input-effect" placeholder="Number of electronics" required>
+
+    <label class="mt-2 mb-1 fw-bold">Electronics (select all that apply):</label>
+    <div class="mb-2 checkbox-grid">
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="mobile"><label class="form-check-label" for="mobile">Mobile</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="laptop"><label class="form-check-label" for="laptop">Laptop</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="tv"><label class="form-check-label" for="tv">TV</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="battery"><label class="form-check-label" for="battery">Battery</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="washingMachine"><label class="form-check-label" for="washingMachine">Washing Machine</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="Refridgerator"><label class="form-check-label" for="Refridgerator">Refridgerator</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="Oven"><label class="form-check-label" for="Oven">Oven</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="Dishwasher"><label class="form-check-label" for="Dishwasher">Dishwasher</label></div>
+      <div class="form-check check-animate"><input class="form-check-input" type="checkbox" id="other"><label class="form-check-label" for="other">Other</label></div>
+    </div>
+
+    <input type="number" class="form-control mb-3 form-input-effect" placeholder="How many years before you bought" required>
+
+    <button type="submit" class="btn btn-light w-100 submit-btn-effect">Submit</button>
+  </form>
+</div>
+
+<!-- REQUEST FORM -->
+<div id="requestForm" class="form-box d-none form-animate">
+  <h4 class="mb-3">Request Functional Parts</h4>
+
+  <form onsubmit="submitRequest(event)">
+    <input type="text" class="form-control mb-2 form-input-effect" placeholder="Name" required>
+    <input type="text" class="form-control mb-2 form-input-effect" placeholder="Company / Organisation Name" required>
+    <input type="text" class="form-control mb-2 form-input-effect" placeholder="Functional part needed" required>
+    <input type="number" class="form-control mb-2 form-input-effect" placeholder="Quantity (how many)" required>
+    <input type="text" class="form-control mb-3 form-input-effect" placeholder="Location" required>
+    <button type="submit" class="btn btn-light w-100 submit-btn-effect">Submit Request</button>
+  </form>
+</div>
+
+<section id="contact" class="contact-section"> <!-- optional overlay for readability --> <div class="container-fluid"> <div class="row align-items-start"> <!-- LEFT SIDE --> <div class="col-md-5 contact-left"> <img src="images/img4.jpg" class="contact-recycle-img" alt="Recycle"> <p class="sdg-text"> EcoTrade primarily supports SDG 11 by building sustainable cities and communities, while also advancing circular economy, climate action, innovation, green jobs, health, and partnerships including SDGs 12, 13, 9, 8, 3 & 17 </p> </div> <!-- RIGHT SIDE --> <div class="col-md-5 offset-md-1 contact-right"> <h2>Contact Us</h2> <p><strong>Email:</strong><br> we.forge24@gmail.com </p> <p><strong>Call Us:</strong><br> 7799814144 | 9542283203 </p> </div> </div> </div> </section>
+
+<!-- SUCCESS TOAST -->
+<div id="successToast" class="success-toast">
+  <span id="toastMsg">✅ Done!</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
